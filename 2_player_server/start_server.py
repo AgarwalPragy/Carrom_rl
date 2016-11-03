@@ -361,7 +361,7 @@ def validate(action, Player, state):
         force = random.random()
     global Stochasticity
     if Stochasticity == 1 and Player == 2:
-        angle = angle + randrange(-5, 5)
+        angle = angle + (random.choice([-1, 1]) * gauss(0, noiseAngle))
         # if angle<-45:
         #     angle=-45
         # if angle>225:
@@ -376,9 +376,9 @@ def validate(action, Player, state):
         angle = 360 + angle
     angle = angle / 180.0 * 3.14
     position = 170 + \
-        (float(max(min(position + gauss(0, noiseForce), 1), 0)) * (460))
+        (float(max(min(position + gauss(0, noisePosition), 1), 0)) * (460))
     force = MIN_FORCE + \
-        float(max(min(force + gauss(0, noiseAngle), 1), 0)) * MAX_FORCE
+        float(max(min(force + gauss(0, noiseForce), 1), 0)) * MAX_FORCE
 
     if Player == 1:
         check = 0
